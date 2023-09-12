@@ -1,0 +1,60 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "ip": ["geoip:private","geoip:cn"],
+                "outboundTag": "block"
+            }
+        ]
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": {{ listen_port }},
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "sGLzG6kUwBpZd73sW0nq",
+                        "flow": ""
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "grpc",
+                "security": "reality",
+                "realitySettings": {
+                    "show": false,
+                    "dest": {{ reality_grpc.dest }},
+                    "xver": 0,
+                    "serverNames": {{ reality_grpc.serverNames }},
+                    "privateKey": "gC7kYSH3IKao55jQkb7fUR33Ng04JKtP6PDaZ1HZs38",
+                    "shortIds": {{ reality_grpc.shortIds }}
+                },
+                "grpcSettings": {
+                    "serviceName": ""
+                }
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": ["http", "tls", "quic"]
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ]
+}

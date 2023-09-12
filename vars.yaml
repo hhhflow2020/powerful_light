@@ -1,0 +1,20 @@
+program_file_name: Xray-linux-64
+program_file_version: v1.8.4
+program_file_md5sum: 59f34b874d5107b0c1800f5c80fcdcaa
+program_config_version: master
+server_name: us
+server_id: 100
+
+active_protocol: reality_grpc
+listen_port: 1520
+
+reality_grpc:
+  dest: www.ebay.com:443
+  serverNames:
+    - www.ebay.com
+    - anywhere.ebay.com
+    - anywhere.ebay.com.hk
+    - anywhere.ebay.com.sg
+  privateKey: gC7kYSH3IKao55jQkb7fUR33Ng04JKtP6PDaZ1HZs38
+  shortIds:
+    - 775eb6408888248e

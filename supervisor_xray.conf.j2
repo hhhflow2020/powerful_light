@@ -1,0 +1,7 @@
+[program:{{ server_name }}_{{ server_id }}]
+command=./xray -c {{ server_name }}_{{ server_id }}.yaml
+directory=/opt/program/{{ server_name }}/{{ server_id }}/{{ program_file_name }}_{{ program_file_version }}
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/xray/{{ server_name }}_{{ server_id }}.err.log
+stdout_logfile=/var/log/xray/{{ server_name }}_{{ server_id }}.out.log
